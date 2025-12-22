@@ -1,8 +1,9 @@
 package org.example;
 
 public class Warrior {
-    private String name;
+    private final String name;
     private int healthPoints;
+    private int actualHealthPoints;
     private int defense;
     private int attack;
     private int speed;
@@ -12,6 +13,7 @@ public class Warrior {
     public Warrior(String name, int healthPoints, int defense, int attack, int speed, diceRoll damage){
         this.name = name;
         this.healthPoints = healthPoints;
+        this.actualHealthPoints = healthPoints;
         this.defense = defense;
         this.attack = attack;
         this.speed = speed;
@@ -34,19 +36,23 @@ public class Warrior {
         return healthPoints;
     }
 
+    public int getActualHealthPoints() {
+        return actualHealthPoints;
+    }
+
     public int getSpeed() {
         return speed;
     }
 
     public int gettingHited(int damage){
-        this.healthPoints -= damage;
-        if(this.healthPoints <= 0){
-            this.healthPoints = 0;
+        this.actualHealthPoints -= damage;
+        if(this.actualHealthPoints <= 0){
+            this.actualHealthPoints = 0;
         }
-        return this.healthPoints;
+        return this.actualHealthPoints;
     }
 
     public boolean isDead(){
-        return this.healthPoints <= 0;
+        return this.actualHealthPoints <= 0;
     }
 }
