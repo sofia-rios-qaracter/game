@@ -26,7 +26,7 @@ public class Combat {
             System.out.println("Order for the turn " + turn + ".");
 
             warriorsOrder.forEach(warrior -> {
-                System.out.println(warrior.getName() + " has rolled an "
+                System.out.println(warrior.getName() + " has rolled a "
                         + warrior.getRolledSpeed() + " for a total of "
                         + (warrior.getSpeed() + warrior.getRolledSpeed()));
             });
