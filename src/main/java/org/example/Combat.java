@@ -91,7 +91,7 @@ public class Combat {
             if (defender.getActualHealthPoints() == 0) {
                 System.out.println(Color.RED + defender.getName() + " has fainted" + Color.RESET);
             } else {
-                System.out.println(defender.getName() + " have " + defender.showHP() + "health points left");
+                System.out.println(defender.getName() + " have " + defender.showHP() + " health points left");
             }
         } else {
             System.out.println("The attack have failed!");
