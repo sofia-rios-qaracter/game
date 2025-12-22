@@ -106,15 +106,20 @@ public class Warrior {
         return color;
     }
 
+    public String showHP() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(percentageHP()).append(this.actualHealthPoints).append(Color.RESET)
+                .append("/").append(Color.GREEN).append(Color.BOLD).append(this.healthPoints).append(Color.RESET);
+
+        return sb.toString();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
         sb.append("Name of the warrior: ").append(this.name).append("\n");
-        sb.append("Life: ")
-                .append(percentageHP()).append(this.actualHealthPoints).append(Color.RESET)
-                .append("/").append(Color.GREEN).append(Color.BOLD).append(this.healthPoints).append(Color.RESET)
-                .append("\n");
+        sb.append("Life: ").append(showHP()).append("\n");
         sb.append("Attack: ").append(this.attack).append("\n");
         sb.append("Defense: ").append(this.defense).append("\n");
         sb.append("Speed: ").append(this.speed).append("\n");
