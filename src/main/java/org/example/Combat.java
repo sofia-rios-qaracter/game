@@ -70,7 +70,9 @@ public class Combat {
             enoughWarriors = warriors.canStillFigth();
         } while (enoughWarriors);
 
-        System.out.println("The fight is over! The winner is: " + warriors.winner().getName() + "\nCongratulations!!");
+        System.out.println("The fight is over! The winner is: " + Color.GREEN + Color.BOLD + Color.UNDERLAYED
+                + warriors.winner().getName()
+                + Color.RESET + "\nCongratulations!!");
     }
 
     public static void fightBetweenTwo(Warrior atacker, Warrior defender, Rolls r) {
@@ -87,10 +89,9 @@ public class Combat {
             defender.gettingHited(atacker.getRolledDamage());
 
             if (defender.getActualHealthPoints() == 0) {
-                System.out.println(defender.getName() + " has fainted");
+                System.out.println(Color.RED + defender.getName() + " has fainted" + Color.RESET);
             } else {
-                System.out.println(defender.getName() + " have " + defender.getActualHealthPoints()
-                        + "/" + defender.getHealthPoints() + "health points left");
+                System.out.println(defender.getName() + " have " + defender.showHP() + "health points left");
             }
         } else {
             System.out.println("The attack have failed!");
