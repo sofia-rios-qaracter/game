@@ -38,7 +38,15 @@ public class Warrior {
         return speed;
     }
 
+    public int gettingHited(int damage){
+        this.healthPoints -= damage;
+        if(this.healthPoints <= 0){
+            this.healthPoints = 0;
+        }
+        return this.healthPoints;
+    }
+
     public boolean isDead(){
-        return this.healthPoints < 0;
+        return this.healthPoints <= 0;
     }
 }
