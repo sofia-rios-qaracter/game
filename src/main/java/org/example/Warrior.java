@@ -55,4 +55,18 @@ public class Warrior {
     public boolean isDead(){
         return this.actualHealthPoints <= 0;
     }
+
+    @Override
+    public String toString(){
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("Name of the warrior: ").append(this.name).append("\n");
+        sb.append("Life: ").append(this.actualHealthPoints).append("/").append(this.healthPoints).append("\n");
+        sb.append("Attack: ").append(this.attack).append("\n");
+        sb.append("Defense: ").append(this.defense).append("\n");
+        sb.append("Speed: ").append(this.speed).append("\n");
+        sb.append("Dice damage: ").append(this.damage.toString()).append("\n");
+
+        return sb.toString();
+    }
 }
