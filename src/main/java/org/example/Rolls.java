@@ -16,7 +16,7 @@ public class Rolls {
     }
 
     private int randomGenerator(int last, int first){
-        return (int) (this.rand.nextDouble()*last)+1;
+        return (int) (this.rand.nextDouble()*last)+first;
     }
 
     private int randomGenerator(int last){
