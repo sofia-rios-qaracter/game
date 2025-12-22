@@ -8,9 +8,11 @@ public class Warrior {
     private int attack;
     private int speed;
     private diceRoll damage;
+    private int rolledAttack;
+    private int rolledSpeed;
+    private int rolledDamage;
 
-
-    public Warrior(String name, int healthPoints, int defense, int attack, int speed, diceRoll damage){
+    public Warrior(String name, int healthPoints, int defense, int attack, int speed, diceRoll damage) {
         this.name = name;
         this.healthPoints = healthPoints;
         this.actualHealthPoints = healthPoints;
@@ -18,6 +20,9 @@ public class Warrior {
         this.attack = attack;
         this.speed = speed;
         this.damage = damage;
+        this.rolledAttack = 0;
+        this.rolledSpeed = 0;
+        this.rolledDamage = 0;
     }
 
     public int getAttack() {
@@ -44,20 +49,50 @@ public class Warrior {
         return speed;
     }
 
-    public int gettingHited(int damage){
+    public int getRolledAtack() {
+        return rolledAttack;
+    }
+
+    public int getRolledSpeed() {
+        return rolledSpeed;
+    }
+
+    public int getRolledDamage() {
+        return this.rolledDamage;
+    }
+
+    public int gettingHited(int damage) {
         this.actualHealthPoints -= damage;
-        if(this.actualHealthPoints <= 0){
+        if (this.actualHealthPoints <= 0) {
             this.actualHealthPoints = 0;
         }
         return this.actualHealthPoints;
     }
 
-    public boolean isDead(){
+    public int rolledForAtack(Rolls r) {
+        this.rolledAttack = r.rollD20();
+
+        return this.rolledAttack;
+    }
+
+    public int rolledForSpeed(Rolls r) {
+        this.rolledSpeed = r.rollD20();
+
+        return this.rolledSpeed;
+    }
+
+    public int rolledForDamage(Rolls r) {
+        this.rolledDamage = r.rollDamage(this.damage);
+
+        return this.rolledDamage;
+    }
+
+    public boolean isDead() {
         return this.actualHealthPoints <= 0;
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder sb = new StringBuilder();
 
         sb.append("Name of the warrior: ").append(this.name).append("\n");
