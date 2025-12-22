@@ -20,8 +20,12 @@ public class WarriorList {
         return this.warriors.get(name);
     }
 
-    public boolean canBattle(){
+    public boolean atLeatTwo(){
         return this.warriors.size() >= 2;
+    }
+
+    public boolean canStillFigth(){
+        return this.warriors.values().stream().filter(warrior -> !warrior.isDead()).count() >= 2;
     }
 
     @Override
