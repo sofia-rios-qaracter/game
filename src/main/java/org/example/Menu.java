@@ -21,17 +21,17 @@ public class Menu {
                 warrior = loadWarrior(sc);
                 if (warrior != null)
                     warriors.addWarrior(warrior);
-                Util.readWord(sc, "Press enter to coninue", "");
+                Util.readString(sc, "Press enter to coninue", "");
                 break;
             case 2:
                 warrior = createWarrior(sc);
                 if (warrior != null)
                     warriors.addWarrior(warrior);
-                Util.readWord(sc, "Press enter to coninue", "");
+                Util.readString(sc, "Press enter to coninue", "");
                 break;
             case 3:
                 System.out.println(warriors);
-                Util.readWord(sc, "Press enter to coninue", "");
+                Util.readString(sc, "Press enter to coninue", "");
                 break;
             case 4:
                 Combat.combatMenu(sc, warriors);
