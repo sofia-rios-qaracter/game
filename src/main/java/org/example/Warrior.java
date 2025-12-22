@@ -91,12 +91,30 @@ public class Warrior {
         return this.actualHealthPoints <= 0;
     }
 
+    private String percentageHP() {
+        double percentage = (this.actualHealthPoints * 1.0) / (this.healthPoints * 1.0) * 100;
+        String color;
+
+        if (percentage <= 20) {
+            color = Color.RED;
+        } else if (percentage <= 50) {
+            color = Color.YELLOW;
+        } else {
+            color = Color.GREEN;
+        }
+
+        return color;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
         sb.append("Name of the warrior: ").append(this.name).append("\n");
-        sb.append("Life: ").append(this.actualHealthPoints).append("/").append(this.healthPoints).append("\n");
+        sb.append("Life: ")
+                .append(percentageHP()).append(this.actualHealthPoints).append(Color.RESET)
+                .append("/").append(Color.GREEN).append(Color.BOLD).append(this.healthPoints).append(Color.RESET)
+                .append("\n");
         sb.append("Attack: ").append(this.attack).append("\n");
         sb.append("Defense: ").append(this.defense).append("\n");
         sb.append("Speed: ").append(this.speed).append("\n");
