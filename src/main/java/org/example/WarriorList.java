@@ -1,38 +1,62 @@
 package org.example;
 
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 
 public class WarriorList {
     private HashMap<String, Warrior> warriors;
 
-    public WarriorList(){
+    public WarriorList() {
         this.warriors = new HashMap<>();
     }
 
-    public boolean addWarrior(Warrior warrior){
-        if(this.warriors.containsKey(warrior.getName())) return false;
+    public boolean addWarrior(Warrior warrior) {
+        if (this.warriors.containsKey(warrior.getName()))
+            return false;
 
         this.warriors.put(warrior.getName(), warrior);
         return true;
     }
 
-    public Warrior getWarrior(String name){
+    public Warrior getWarrior(String name) {
         return this.warriors.get(name);
     }
 
-    public boolean atLeatTwo(){
+    public boolean atLeatTwo() {
         return this.warriors.size() >= 2;
     }
 
-    public boolean canStillFigth(){
+    public boolean canStillFigth() {
         return this.warriors.values().stream().filter(warrior -> !warrior.isDead()).count() >= 2;
     }
 
+    public List<Warrior> battleOrder(Rolls r) {
+        return this.warriors.entrySet().stream().filter(entry -> !entry.getValue().isDead())
+                .peek(entry -> entry.getValue().rolledForSpeed(r))
+                .map(entry -> entry.getValue())
+                .sorted(Comparator.comparing(warrior -> warrior.getSpeed() + warrior.getRolledSpeed()))
+                .toList().reversed();
+    }
+
+    public List<Warrior> oponents(Warrior warriorHitting) {
+        return this.warriors.values().stream()
+                .filter(warrior -> !warrior.isDead())
+                .filter(warrior -> !warrior.getName().equalsIgnoreCase(warriorHitting.getName()))
+                .toList();
+    }
+
+    public Warrior winner() {
+        return this.warriors.values().stream()
+                .filter(warrior -> !warrior.isDead())
+                .toList().getFirst();
+    }
+
     @Override
-    public String toString(){
+    public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        this.warriors.forEach((name, warrior) ->{
+        this.warriors.forEach((name, warrior) -> {
             sb.append("-----------\n").append(warrior).append("\n");
         });
 
