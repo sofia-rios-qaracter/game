@@ -98,4 +98,51 @@ public class Util {
 
         return numberToRead;
     }
+
+    public static diceRoll readDiceRoll(Scanner sc, String message, String errorMessage) {
+        String readedDiceRoll;
+        boolean repeatQuestion = false;
+        diceRoll response;
+
+        do {
+            repeatQuestion = false;
+            System.out.println(message);
+            readedDiceRoll = sc.nextLine().trim();
+
+            switch (readedDiceRoll.toLowerCase()) {
+                case "d4":
+                case "4":
+                    response = diceRoll.d4;
+                    break;
+                case "d6":
+                case "6":
+                    response = diceRoll.d6;
+                    break;
+                case "d8":
+                case "8":
+                    response = diceRoll.d8;
+                    break;
+                case "d10":
+                case "10":
+                    response = diceRoll.d10;
+                    break;
+                case "d12":
+                case "12":
+                    response = diceRoll.d12;
+                    break;
+                case "d20":
+                case "20":
+                    response = diceRoll.d20;
+                    break;
+                default:
+                    repeatQuestion = true;
+                    System.out.println(errorMessage);
+                    break;
+            }
+
+        } while (repeatQuestion);
+
+        return diceRoll.d10;
+    }
+
 }
