@@ -32,7 +32,7 @@ public class Combat {
             });
 
             System.out.println("-----");
-            Util.readString(sc, "Press enter to continue", "");
+            Util.readString(sc, GeneralMessages.PRESS_ENTER, "");
 
             for (Warrior warrior : warriorsOrder) {
                 if (warrior.isDead()) {
@@ -50,7 +50,7 @@ public class Combat {
                         }
                         do {
                             oponentToHit = Util.readInt(sc, "So who's the 'lucky' one? ",
-                                    "Please type a number") - 1;
+                                    GeneralMessages.MUST_INT) - 1;
 
                             if (oponentToHit < 0 || oponentToHit >= oponents.size()) {
                                 System.out.println("Please choose a number between the given ones!");
@@ -63,7 +63,7 @@ public class Combat {
 
                     fightBetweenTwo(warrior, oponent, r);
                     System.out.println();
-                    Util.readString(sc, "Press enter to continue", "");
+                    Util.readString(sc, GeneralMessages.PRESS_ENTER, "");
                 }
             }
 
