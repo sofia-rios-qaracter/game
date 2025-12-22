@@ -17,7 +17,7 @@ public class Util {
             } catch (InputMismatchException e) {
                 sc.nextLine();
                 repeatQuestion = true;
-                System.out.println(errorMessage);
+                soutError(errorMessage);
             }
         } while (repeatQuestion);
 
@@ -92,7 +92,7 @@ public class Util {
             numberToRead = readInt(sc, message, errorMessageType);
             if (numberToRead < 0) {
                 repeat = true;
-                System.out.println(errorBelowZero);
+                soutError(errorBelowZero);
             }
         } while (repeat);
 
@@ -102,7 +102,7 @@ public class Util {
     public static diceRoll readDiceRoll(Scanner sc, String message, String errorMessage) {
         String readedDiceRoll;
         boolean repeatQuestion = false;
-        diceRoll response;
+        diceRoll response = diceRoll.d4;
 
         do {
             repeatQuestion = false;
@@ -136,13 +136,20 @@ public class Util {
                     break;
                 default:
                     repeatQuestion = true;
-                    System.out.println(errorMessage);
+                    soutError(errorMessage);
                     break;
             }
 
         } while (repeatQuestion);
 
-        return diceRoll.d10;
+        return response;
     }
 
+    public static void soutRed(String message) {
+        System.out.println(Color.RED + message + Color.RESET);
+    }
+
+    public static void soutError(String message) {
+        System.out.println(Color.BOLD + Color.RED + message + Color.RESET);
+    }
 }
