@@ -1,8 +1,10 @@
 package org.example;
 
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class WarriorList {
     private HashMap<String, Warrior> warriors;
@@ -32,11 +34,15 @@ public class WarriorList {
     }
 
     public List<Warrior> battleOrder(Rolls r) {
-        return this.warriors.entrySet().stream().filter(entry -> !entry.getValue().isDead())
+        return this.warriors.entrySet().stream()
+                .filter(entry -> !entry.getValue().isDead())
                 .peek(entry -> entry.getValue().rolledForSpeed(r))
                 .map(entry -> entry.getValue())
                 .sorted(Comparator.comparing(warrior -> warrior.getSpeed() + warrior.getRolledSpeed()))
-                .toList().reversed();
+                .collect(Collectors.collectingAndThen(Collectors.toList(), list -> {
+                    Collections.reverse(list);
+                    return list;
+                }));
     }
 
     public List<Warrior> oponents(Warrior warriorHitting) {
@@ -49,7 +55,7 @@ public class WarriorList {
     public Warrior winner() {
         return this.warriors.values().stream()
                 .filter(warrior -> !warrior.isDead())
-                .toList().getFirst();
+                .toList().get(0);
     }
 
     @Override
