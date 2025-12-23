@@ -1,9 +1,6 @@
 package org.example;
 
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class WarriorList {
@@ -37,7 +34,7 @@ public class WarriorList {
         return this.warriors.entrySet().stream()
                 .filter(entry -> !entry.getValue().isDead())
                 .peek(entry -> entry.getValue().rolledForSpeed(r))
-                .map(entry -> entry.getValue())
+                .map(Map.Entry::getValue)
                 .sorted(Comparator.comparing(warrior -> warrior.getSpeed() + warrior.getRolledSpeed()))
                 .collect(Collectors.collectingAndThen(Collectors.toList(), list -> {
                     Collections.reverse(list);
